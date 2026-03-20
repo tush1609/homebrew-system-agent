@@ -10,14 +10,14 @@ class SystemAgent < Formula
   depends_on "python@3.11"
 
   def install
-    venv = virtualenv_create(libexec, "python3.11")
-    system libexec/"bin/pip", "install", "-r", "requirements.txt"
+      venv = virtualenv_create(libexec, "python3.11")
+      venv.pip_install resources
+      venv.pip_install_and_link buildpath
 
-    libexec.install Dir["*"]
-    (bin/"system-agent").write <<~EOS
-      #!/bin/bash
-      exec "#{libexec}/bin/python" "#{libexec}/main.py" --ui terminal
-    EOS
+      (bin/"system-agent").write <<~EOS
+        #!/bin/bash
+        exec "#{libexec}/bin/python" "#{prefix}/main.py" --ui terminal
+      EOS
   end
 
   def caveats
