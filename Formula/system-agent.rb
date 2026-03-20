@@ -4,7 +4,7 @@ class SystemAgent < Formula
   desc "Lightweight multi-agent chat orchestrator with Chainlit UI"
   homepage "https://github.com/tush1609/system_agent"
   url "https://github.com/tush1609/system_agent/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "4255004d066b6559cc96caca90b3f3077e47d5b8fc59dad5694c9f17d8dc22de"
+  sha256 "de2dc0ae5c40be45bbe57778b56139e3b660e97a784634a468310119b20bca1d"
   license "NOASSERTION"
 
   depends_on "python@3.11"
