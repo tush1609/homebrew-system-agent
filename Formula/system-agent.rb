@@ -12,7 +12,8 @@ class SystemAgent < Formula
   def install
       venv = virtualenv_create(libexec, "python3.11")
       venv.pip_install resources
-      venv.pip_install_and_link buildpath
+
+      prefix.install Dir["*"]
 
       (bin/"system-agent").write <<~EOS
         #!/bin/bash
