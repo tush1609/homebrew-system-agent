@@ -11,13 +11,12 @@ class SystemAgent < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3.11")
-    venv.pip_install "pip"
-    venv.pip_install "-r", "requirements.txt"
+    system libexec/"bin/pip", "install", "-r", "requirements.txt"
 
     libexec.install Dir["*"]
     (bin/"system-agent").write <<~EOS
       #!/bin/bash
-      exec "#{libexec}/bin/python" "#{libexec}/main.py" --ui chainlit
+      exec "#{libexec}/bin/python" "#{libexec}/main.py" --ui terminal
     EOS
   end
 
