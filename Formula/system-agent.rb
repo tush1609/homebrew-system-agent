@@ -6,8 +6,14 @@ class SystemAgent < Formula
   license "NOASSERTION"
 
   depends_on "python@3.11"
+  depends_on "openssl@3"
+  depends_on "pkg-config"
+  depends_on "rust"
 
   def install
+    ENV["OPENSSL_DIR"] = Formula["openssl@3"].opt_prefix
+    ENV["PIP_NO_BINARY"] = "cryptography"
+
     system "python3.11", "-m", "venv", libexec
     system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip"
     system libexec/"bin/python", "-m", "pip", "install", "-r", "requirements.txt"
