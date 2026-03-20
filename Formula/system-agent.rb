@@ -13,10 +13,11 @@ class SystemAgent < Formula
   def install
     ENV["OPENSSL_DIR"] = Formula["openssl@3"].opt_prefix
     ENV["PIP_NO_BINARY"] = "cryptography"
+    ENV["LDFLAGS"] = "-Wl,-headerpad_max_install_names"
 
     system "python3.11", "-m", "venv", libexec
     system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip"
-    system libexec/"bin/python", "-m", "pip", "install", "-r", "requirements.txt"
+    system libexec/"bin/python", "-m", "pip", "install", "--no-cache-dir", "-r", "requirements.txt"
 
     libexec.install Dir["*"]
 
