@@ -17,7 +17,7 @@ class SystemAgent < Formula
 
     system "python3.11", "-m", "venv", libexec
     system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip"
-    system libexec/"bin/python", "-m", "pip", "install", "--no-cache-dir", "-r", "requirements.txt"
+    system libexec/"bin/python", "-m", "pip", "install", "--no-cache-dir", "--no-binary", ":all:", "-r", "requirements.txt"
 
     libexec.install Dir["*"]
 
