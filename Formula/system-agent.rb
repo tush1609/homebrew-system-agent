@@ -16,7 +16,7 @@ class SystemAgent < Formula
     ENV["LDFLAGS"] = "-Wl,-headerpad_max_install_names"
 
     system "python3.11", "-m", "venv", libexec
-    system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip"
+    system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip", "setuptools", "wheel"
     system libexec/"bin/python", "-m", "pip", "install", "--no-cache-dir", "--no-binary", ":all:", "-r", "requirements.txt"
 
     libexec.install Dir["*"]
