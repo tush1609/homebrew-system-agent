@@ -25,7 +25,7 @@ class SystemAgent < Formula
     (bin/"system-agent").write <<~EOS
       #!/bin/bash
       set -e
-      exec "#{libexec}/bin/python" "#{libexec}/main.py" --ui terminal
+      exec "#{libexec}/bin/python" "#{libexec}/main.py" --ui terminal "$@"
     EOS
   end
 
