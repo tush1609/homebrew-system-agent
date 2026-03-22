@@ -25,7 +25,17 @@ class SystemAgent < Formula
     (bin/"system-agent").write <<~EOS
       #!/bin/bash
       set -e
-      exec "#{libexec}/bin/python" "#{libexec}/main.py" --ui terminal "$@"
+      ui_specified=false
+      for arg in "$@"; do
+        if [[ \$arg == --ui ]]; then
+          ui_specified=true
+          break
+        fi
+      done
+      if [[ \$ui_specified == false ]]; then
+        set -- "\$@" --ui terminal
+      fi
+      exec "#{libexec}/bin/python" "#{libexec}/main.py" "\$@"
     EOS
   end
 
